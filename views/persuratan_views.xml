@@ -5,13 +5,13 @@
             <field name="name">Surat Masuk</field>
             <field name="model">surat.masuk</field>
             <field name="arch" type="xml">
-                <tree string="">
+                <tree string="Surat Masuk">
                     <field name="no" />
-                        <field name="tanggal" />
-                        <field name="tofrom" />
-                        <field name="ringkasan" />
-                        <field name="keterangan" />
-                        <field name="file_surat" type="binary"/>
+                    <field name="tanggal" />
+                    <field name="tofrom" />
+                    <field name="ringkasan" />
+                    <field name="keterangan" />
+                    <field name="file_surat" type="binary"/>
                 </tree>
             </field>
         </record>
@@ -20,11 +20,9 @@
             <field name="name">Surat Masuk</field>
             <field name="model">surat.masuk</field>
             <field name="arch" type="xml">
-                <form string="">
-                    <header>
-                    </header>
-                    <sheet>
-                        <group string="Surat Masuk">
+                <form string="Surat Masuk">
+                   <sheet>
+                        <group>
                             <field name="no" />
                             <field name="tanggal" />
                             <field name="tofrom" />
@@ -36,7 +34,7 @@
                             <field name="nosurat" />
                             <field name="tanggalsurat" />
                         </group>
-                    </sheet>
+                     </sheet>
                 </form>
             </field>
         </record>    
@@ -45,8 +43,8 @@
             <field name="name">Surat Keluar</field>
             <field name="model">surat.keluar</field>
             <field name="arch" type="xml">
-                <tree string="">
-
+                <tree string="Surat Keluar">
+                    <!-- Tambahkan field sesuai kebutuhan -->
                 </tree>
             </field>
         </record>
@@ -55,12 +53,12 @@
             <field name="name">Surat Keluar</field>
             <field name="model">surat.keluar</field>
             <field name="arch" type="xml">
-                <form string="">
-                    <header>
-                    </header>
+                <form string="Surat Keluar">
                     <sheet>
-                        <group string="Surat Keluar">
-                            
+                        <group>
+                            <group string="Surat Keluar">
+                                <!-- Tambahkan kolom sesuai kebutuhan -->
+                            </group>
                         </group>
                     </sheet>
                 </form>
@@ -71,7 +69,7 @@
             <field name="name">Penugasan</field>
             <field name="model">data.penugasan</field>
             <field name="arch" type="xml">
-                <tree string="">
+                <tree string="Penugasan">
                     <field name="name" />
                     <field name="jabatan" />
                     <field name="niy" />
@@ -86,17 +84,15 @@
             <field name="name">Penugasan</field>
             <field name="model">data.penugasan</field>
             <field name="arch" type="xml">
-                <form string="">
-                    <header>
-                    </header>
+                <form string="Penugasan">
                     <sheet>
-                        <group string="Penugasan">
-                            <field name="name" />
-                            <field name="jabatan" />
-                            <field name="niy" />
-                            <field name="alamat" />
-                            <field name="jam" widget="time" options="{'time_format': 'HH:mm'}" />
-                            <field name="tempat" />
+                        <group>
+                            <field name="name" decoration-bf="{'bg_danger': [('name', '=', False)], 'bg_success': [('name', '!=', False)]}" />
+                            <field name="jabatan" decoration-bf="{'bg_danger': [('jabatan', '=', False)], 'bg_success': [('jabatan', '!=', False)]}" />
+                            <field name="niy" decoration-bf="{'bg_danger': [('niy', '=', False)], 'bg_success': [('niy', '!=', False)]}" />
+                            <field name="alamat" decoration-bf="{'bg_danger': [('alamat', '=', False)], 'bg_success': [('alamat', '!=', False)]}" />
+                            <field name="jam" decoration-bf="{'bg_danger': [('jam', '=', False)], 'bg_success': [('jam', '!=', False)]}" />
+                            <field name="tempat" decoration-bf="{'bg_danger': [('tempat', '=', False)], 'bg_success': [('tempat', '!=', False)]}" />
                         </group>
                     </sheet>
                 </form>
@@ -119,8 +115,6 @@
             <field name="name">Penugasan</field>
             <field name="res_model">data.penugasan</field>
             <field name="view_mode">tree,form</field>
-        </record>
-
-        
+        </record>       
     </data>
 </odoo>

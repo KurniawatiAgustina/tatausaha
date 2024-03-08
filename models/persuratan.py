@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 class data_suratmasuk(models.Model):
     _name = 'surat.masuk'
@@ -21,10 +22,28 @@ class data_penugasan(models.Model):
     _name = 'data.penugasan'
     _description = 'data_penugasan'
     
-    name = fields.Char(string='Nama')
-    jabatan = fields.Char(string='Jabatan')
-    niy = fields.Char(string='Niy')
-    alamat = fields.Char(string='Alamat')
-    tanggal = fields.Date(string='Tanggal')
-    jam = fields.Datetime(string='Jam')
-    tempat = fields.Char(string='Tempat')    
+    name = fields.Char(string='Nama', required=True)
+    jabatan = fields.Char(string='Jabatan', required=True)
+    niy = fields.Char(string='NIY', required=True)
+    alamat = fields.Char(string='Alamat', required=True)
+    jam = fields.Datetime(string='Jam', required=True)
+    tempat = fields.Char(string='Tempat', required=True)
+
+    @api.model
+    def create(self, vals):
+        record = super(data_penugasan, self).create(vals)
+        if any(not record[field] for field in ['name', 'jabatan', 'niy', 'alamat', 'jam', 'tempat']):
+            self.env['mail.message'].create({
+                'body': "Ada kolom yang belum diisi!",
+                'model': 'data.penugasan',
+                'res_id': record.id,
+                'subtype_id': self.env.ref('mail.mt_comment').id,
+            })
+        else:
+            self.env['mail.message'].create({
+                'body': "Semua kolom berhasil diisi.",
+                'model': 'data.penugasan',
+                'res_id': record.id,
+                'subtype_id': self.env.ref('mail.mt_comment').id,
+            })
+        return record

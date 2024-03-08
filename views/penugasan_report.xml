@@ -6,7 +6,7 @@
             id="report_Session"
             model="data.penugasan"
             string="Penugasan Report"
-            report_type="qweb-pdf"
+            report_type="qweb-html"
             name="tatausaha.penugasan"
             file="tatausaha.penugasan"
         />
